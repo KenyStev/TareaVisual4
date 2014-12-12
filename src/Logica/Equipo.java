@@ -18,8 +18,8 @@ public class Equipo {
     }
     }*/
     
-    public boolean searchPos(int numCamisa){
-        return jugadores[numCamisa-1] != null;
+    public Jugador searchPlayer(int numCamisa){
+        return jugadores[numCamisa-1];
     }
     
     public boolean addJugador(int numCamisa, String nombre, String posicion){

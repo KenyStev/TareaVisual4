@@ -5,6 +5,7 @@
  */
 package Formas;
 
+import Logica.Jugador;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,19 +13,24 @@ import javax.swing.JOptionPane;
  * @author zerokull
  */
 public class AgregarGoles extends javax.swing.JFrame {
+    Jugador player;
 
     /**
      * Creates new form AgregarGoles
      */
-    public AgregarGoles() {
+    public AgregarGoles(Jugador player) {
         initComponents();
+        this.player=player;
         init();
     }
     
     public void init(){
-        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Numero de Camisa:"));
-        
-        
+        if(player!=null){
+            lblNum.setText(""+player.getNumCamiseta());
+            lblName.setText(player.getNombre());
+            lblPos.setText(player.getPosicion());
+            lblGoles.setText(""+player.getGolesAnotados());
+        }
     }
 
     /**
@@ -48,7 +54,7 @@ public class AgregarGoles extends javax.swing.JFrame {
         txtGoles = new javax.swing.JTextField();
         btnAddGoles = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Numero Camisa:");
 
@@ -69,6 +75,11 @@ public class AgregarGoles extends javax.swing.JFrame {
         jLabel5.setText("Goles a Agregar:");
 
         btnAddGoles.setText("Agregar");
+        btnAddGoles.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAddGolesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,26 +123,34 @@ public class AgregarGoles extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblName)
-                            .addComponent(txtGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtGoles, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblPos)
-                            .addComponent(btnAddGoles))
+                            .addComponent(btnAddGoles)
+                            .addComponent(jLabel3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblGoles))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jLabel4)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblGoles)
+                            .addComponent(jLabel4)))
+                    .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAddGolesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddGolesActionPerformed
+        int goles = Integer.parseInt(txtGoles.getText());
+        if(goles>0){
+            Menu.EQUIPO.addGoles(player.getNumCamiseta(), goles);
+            JOptionPane.showMessageDialog(this, "Goles Agregados Exitosamente!");
+            dispose();
+        }else{
+            JOptionPane.showMessageDialog(this, "No Puede Agregar goles negativos!");
+        }
+    }//GEN-LAST:event_btnAddGolesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -163,7 +182,7 @@ public class AgregarGoles extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AgregarGoles().setVisible(true);
+                new AgregarGoles(null).setVisible(true);
             }
         });
     }

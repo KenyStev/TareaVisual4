@@ -6,6 +6,7 @@
 package Formas;
 
 import Logica.Equipo;
+import Logica.Jugador;
 import javax.swing.JOptionPane;
 
 /**
@@ -50,6 +51,11 @@ public class Menu extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton2.setText("Listar Jugadores");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jButton3.setText("Agregar Goles");
@@ -99,9 +105,18 @@ public class Menu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-        //JOptionPane.showInputDialog(this, "", rootPaneCheckingEnabled)
+        int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Numero de Camisa:"));
+        Jugador player = EQUIPO.searchPlayer(num);
+        if(player!=null){
+            new AgregarGoles(player).setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(this, "No Existe un juagador con ese numero de camisa!");
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        new ListarJugadores().setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
