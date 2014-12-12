@@ -5,6 +5,7 @@
  */
 package Formas;
 
+import Logica.Equipo;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -22,7 +23,8 @@ public class ListarJugadores extends javax.swing.JFrame {
     }
     
     public void initTable(){
-//        tblListPlayers.setModel(new DefaultTableModel(, columnNames));
+        tblListPlayers.setModel(new DefaultTableModel(Menu.EQUIPO.getJugadores(), Menu.EQUIPO.getTitles()));
+        tblListPlayers.enable(false);
         tblListPlayers.repaint();
     }
 
@@ -37,8 +39,9 @@ public class ListarJugadores extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tblListPlayers = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         tblListPlayers.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -61,6 +64,10 @@ public class ListarJugadores extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tblListPlayers);
 
+        jLabel1.setFont(new java.awt.Font("DejaVu Sans", 3, 18)); // NOI18N
+        jLabel1.setText("Lista de Jugadores");
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -69,11 +76,14 @@ public class ListarJugadores extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 669, Short.MAX_VALUE)
                 .addContainerGap())
+            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(65, Short.MAX_VALUE)
+                .addContainerGap()
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -117,6 +127,7 @@ public class ListarJugadores extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblListPlayers;
     // End of variables declaration//GEN-END:variables

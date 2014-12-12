@@ -29,8 +29,8 @@ public class Equipo {
     }
     
     public boolean addGoles(int numCamisa, int goles){
-        if(jugadores[numCamisa] != null){
-            jugadores[numCamisa].addGoles(goles);
+        if(jugadores[numCamisa-1] != null){
+            jugadores[numCamisa-1].addGoles(goles);
             return true;
         }
         return false;
