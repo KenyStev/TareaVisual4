@@ -23,8 +23,12 @@ public class Equipo {
         return false;
     }
     
+    public String[] getTitles(){
+        return new String[] {"Num. Camisa", "Nombre", "Posicion", "Goles Anotados"};
+    }
+    
     public Object[][] getJugadores(){
-        Object[][] players = new Object[this.jugadores.length][4];
+        Object[][] players = new Object[jugadores.length][4];
         for (int i = 0; i < this.jugadores.length; i++) {
             if(jugadores[i]!=null){
                 players[i][0] = jugadores[i].getNumCamiseta();
