@@ -20,6 +20,18 @@ public class Equipo {
     }*/
     
     public boolean addJugador(int numCamisa, String nombre, String posicion){
+        if(contador<23 && jugadores[numCamisa] == null){
+            jugadores[numCamisa] = new Jugador(numCamisa, nombre, posicion);
+            contador++;
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean addGoles(int numCamisa, int goles){
+        if(jugadores[numCamisa] != null){
+            return true;
+        }
         return false;
     }
 }
