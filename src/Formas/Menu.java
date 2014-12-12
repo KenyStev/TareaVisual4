@@ -109,13 +109,13 @@ public class Menu extends javax.swing.JFrame {
         Jugador player = null;
         if(num>0){
             player = EQUIPO.searchPlayer(num);
+            if(player!=null){
+                new AgregarGoles(player).setVisible(true);
+            }else{
+                JOptionPane.showMessageDialog(this, "No Existe un juagador con ese numero de camisa!");
+            }
         }else{
             JOptionPane.showMessageDialog(this, "El numero de camisa debe ser mayor que 0!");
-        }
-        if(player!=null){
-            new AgregarGoles(player).setVisible(true);
-        }else{
-            JOptionPane.showMessageDialog(this, "No Existe un juagador con ese numero de camisa!");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 
