@@ -106,7 +106,12 @@ public class Menu extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int num = Integer.parseInt(JOptionPane.showInputDialog("Ingrese Numero de Camisa:"));
-        Jugador player = EQUIPO.searchPlayer(num);
+        Jugador player = null;
+        if(num>0){
+            player = EQUIPO.searchPlayer(num);
+        }else{
+            JOptionPane.showMessageDialog(this, "El numero de camisa debe ser mayor que 0!");
+        }
         if(player!=null){
             new AgregarGoles(player).setVisible(true);
         }else{
