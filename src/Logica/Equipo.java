@@ -11,7 +11,6 @@ package Logica;
  */
 public class Equipo {
     private Jugador jugadores[] = new Jugador[23];
-    private int contador;
     
     /* private boolean searchCamisa(int camias){
     for(int i=0; i<contador; i++ ){
@@ -20,10 +19,11 @@ public class Equipo {
     }*/
     
     public boolean addJugador(int numCamisa, String nombre, String posicion){
-        if(contador<23 && jugadores[numCamisa] == null){
-            jugadores[numCamisa] = new Jugador(numCamisa, nombre, posicion);
-            contador++;
-            return true;
+        if(numCamisa<=23 && numCamisa>=1){
+            if(jugadores[numCamisa-1] == null){
+                jugadores[numCamisa-1] = new Jugador(numCamisa, nombre, posicion);
+                return true;
+            }
         }
         return false;
     }
