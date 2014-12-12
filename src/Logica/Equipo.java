@@ -22,4 +22,17 @@ public class Equipo {
     public boolean addJugador(int numCamisa, String nombre, String posicion){
         return false;
     }
+    
+    public Object[][] getJugadores(){
+        Object[][] players = new Object[this.jugadores.length][4];
+        for (int i = 0; i < this.jugadores.length; i++) {
+            if(jugadores[i]!=null){
+                players[i][0] = jugadores[i].getNumCamiseta();
+                players[i][1] = jugadores[i].getNombre();
+                players[i][2] = jugadores[i].getPosicion();
+                players[i][3] = jugadores[i].getGolesAnotados();
+            }
+        }
+        return players;
+    }
 }
